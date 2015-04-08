@@ -1,0 +1,19 @@
+add mainNode: JavascriptNode
+
+add mainNode.printer: ConsolePrinter
+
+add mainNode.broker: WSMsgBroker
+set mainNode.broker.port = '9050'
+
+add sync: WSGroup
+set sync.master = 'mainNode'
+set sync.onConnect = '
+add {nodeName}.ticker: Ticker
+bind {nodeName}.ticker.tick chan
+'
+attach mainNode sync
+
+add chan: WSChan
+set chan.port = '9050'
+set chan.host = 'localhost'
+bind mainNode.printer.input chan

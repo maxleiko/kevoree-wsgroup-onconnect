@@ -1,0 +1,9 @@
+add mainNode: JavascriptNode
+add javaClient: JavaNode
+
+add sync: WSGroup
+set sync.master = 'mainNode'
+attach javaClient sync
+
+
+network mainNode.lo.ip localhost
