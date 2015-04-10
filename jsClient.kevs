@@ -1,6 +1,6 @@
 add mainNode, jsClient: JavascriptNode
 
-add sync: WSGroup
+add sync: WSGroup/5.2.9-SNAPSHOT
 set sync.master = 'mainNode'
 attach jsClient sync
 

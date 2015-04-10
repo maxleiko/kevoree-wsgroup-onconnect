@@ -5,11 +5,14 @@ add mainNode.printer: ConsolePrinter
 add mainNode.broker: WSMsgBroker
 set mainNode.broker.port = '9050'
 
-add sync: WSGroup
+add sync: WSGroup/5.2.9-SNAPSHOT
 set sync.master = 'mainNode'
 set sync.onConnect = '
 add {nodeName}.ticker: Ticker
 bind {nodeName}.ticker.tick chan
+'
+set sync.onDisconnect = '
+remove {nodeName}
 '
 attach mainNode sync
 
